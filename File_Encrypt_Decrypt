@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#Ask the user
+
+echo "This is a simple file to encrypt or decrypt"
+echo "Hello there, choose what you want the file to do"
+
+#Create a list of choices either to encrypt or decrypt
+choice="Encrypt Decrypt"
+
+select option in $choice; do
+	#If user enters 1=encrypt
+	if [ $REPLY =  1 ];
+
+then 
+	echo "You have selected Encryption"
+	echo "Please enter the file name"
+	
+	#The file you want to encrypt should be in the same dictory/folder
+	#This read the file name and the extension you want to decrypt
+	read file;
+	
+	#gpg(group policy guard) -c is used to encrypt the file
+	gpg -c $file
+	echo "the file has been encrypted"
+
+else
+	echo "you have selected decrypption"
+	echo "Please enter the file name"
+	
+	#This read the file name the user wants to decrypt
+	read file2;
+	#gpg -g used to decrypt a file
+	gpg -d  $file2
+	echo "The file has been decrypted"
+
+fi
+done
